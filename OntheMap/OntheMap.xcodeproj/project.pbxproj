@@ -14,7 +14,7 @@
 		EA2FBEDF24577F1100B2851D /* OTMResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2FBEDE24577F1100B2851D /* OTMResponse.swift */; };
 		EAFA606E24574B9E00B5C061 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFA606D24574B9E00B5C061 /* AppDelegate.swift */; };
 		EAFA607024574B9E00B5C061 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFA606F24574B9E00B5C061 /* SceneDelegate.swift */; };
-		EAFA607224574B9E00B5C061 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFA607124574B9E00B5C061 /* ViewController.swift */; };
+		EAFA607224574B9E00B5C061 /* LocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFA607124574B9E00B5C061 /* LocationsViewController.swift */; };
 		EAFA607524574B9E00B5C061 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAFA607324574B9E00B5C061 /* Main.storyboard */; };
 		EAFA607724574BA200B5C061 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAFA607624574BA100B5C061 /* Assets.xcassets */; };
 		EAFA607A24574BA200B5C061 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAFA607824574BA200B5C061 /* LaunchScreen.storyboard */; };
@@ -29,7 +29,7 @@
 		EAFA606A24574B9E00B5C061 /* OntheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OntheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAFA606D24574B9E00B5C061 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EAFA606F24574B9E00B5C061 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		EAFA607124574B9E00B5C061 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EAFA607124574B9E00B5C061 /* LocationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsViewController.swift; sourceTree = "<group>"; };
 		EAFA607424574B9E00B5C061 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EAFA607624574BA100B5C061 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EAFA607924574BA200B5C061 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -50,7 +50,7 @@
 		EA2FBECF2457726E00B2851D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				EAFA607124574B9E00B5C061 /* ViewController.swift */,
+				EAFA607124574B9E00B5C061 /* LocationsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -211,7 +211,7 @@
 			files = (
 				EA2FBEDF24577F1100B2851D /* OTMResponse.swift in Sources */,
 				EA2FBEDD24577E8B00B2851D /* LocationResults.swift in Sources */,
-				EAFA607224574B9E00B5C061 /* ViewController.swift in Sources */,
+				EAFA607224574B9E00B5C061 /* LocationsViewController.swift in Sources */,
 				EA2FBED42457735900B2851D /* OTMClient.swift in Sources */,
 				EAFA606E24574B9E00B5C061 /* AppDelegate.swift in Sources */,
 				EA2FBED8245778DD00B2851D /* StudentInformation.swift in Sources */,
