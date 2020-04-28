@@ -10,10 +10,15 @@ import UIKit
 import MapKit
 
 class MapViewController: UIViewController, MKMapViewDelegate {
+    
+    // MARK: Outlets
+    
     @IBOutlet weak var mapView: MKMapView!
     
     let reuseIdentifier: String = "Pin"
     let loginIdentifier = "LoginViewController"
+    
+    // MARK: Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,9 +37,20 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         displayLogin()
     }
     
+    // MARK: Actions
+    
     @IBAction func logoutTapped(_ sender: Any) {
-        //TODO: Kill session on server
-        print("kill session")
+        OTMClient.logout(completion: handleLogout(success:error:))
+    }
+    
+    // MARK: Private Methods
+    
+    func handleLogout(success: Bool, error: Error?) {
+        if (success) {
+            print("Logout Success")
+        } else {
+            print(error ?? "")
+        }
         OTMModel.isAuthenticated = false
         displayLogin()
     }

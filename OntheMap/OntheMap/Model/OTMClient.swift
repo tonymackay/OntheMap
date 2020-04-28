@@ -19,13 +19,13 @@ class OTMClient
         static let base = "https://onthemap-api.udacity.com/v1"
         
         case getStudentLocations
-        case login
+        case session
         
         var stringValue: String {
             switch self {
             case .getStudentLocations:
                 return Endpoints.base + "/StudentLocation?limit=100&order=-updatedAt"
-            case .login:
+            case .session:
                 return Endpoints.base + "/session"
             }
         }
@@ -111,6 +111,57 @@ class OTMClient
         task.resume()
     }
     
+    class func taskForDELETERequest<RequestType: Encodable, ResponseType: Decodable>(url: URL, responseType: ResponseType.Type, body: RequestType, completion: @escaping (ResponseType?, Error?) -> Void) {
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "DELETE"
+        
+        var xsrfCookie: HTTPCookie? = nil
+        let sharedCookieStorage = HTTPCookieStorage.shared
+        for cookie in sharedCookieStorage.cookies! {
+          if cookie.name == "XSRF-TOKEN" { xsrfCookie = cookie }
+        }
+        if let xsrfCookie = xsrfCookie {
+          request.setValue(xsrfCookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")
+        }
+        request.httpBody = try! JSONEncoder().encode(body)
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data else {
+                DispatchQueue.main.async {
+                    completion(nil, error)
+                }
+                return
+            }
+            
+            let newData = data.subdata(in: 5..<data.count)
+            print(String(data: newData, encoding: .utf8) ?? "")
+            
+            let decoder = JSONDecoder()
+            do {
+                let responseObject = try decoder.decode(ResponseType.self, from: newData)
+                DispatchQueue.main.async {
+                    completion(responseObject, nil)
+                }
+            } catch {
+                do {
+                    let errorResponse = try decoder.decode(OTMResponse.self, from: newData) as Error
+                    DispatchQueue.main.async {
+                        completion(nil, errorResponse)
+                    }
+                } catch {
+                    DispatchQueue.main.async {
+                        completion(nil, error)
+                    }
+                }
+            }
+        }
+        task.resume()
+    }
+    
+    
     class func getStudentLocations(completion: @escaping ([StudentInformation], Error?) -> Void) {
         taskForGETRequest(url: Endpoints.getStudentLocations.url, responseType: LocationResults.self) { response, error in
             if let response = response {
@@ -123,10 +174,24 @@ class OTMClient
     
     class func login(email: String, password: String, completion: @escaping (Bool, Error?) -> Void) {
         let body = LoginRequest(email: email, password: password)
-        taskForPOSTRequest(url: Endpoints.login.url, responseType: LoginResponse.self, body: body) { response, error in
+        taskForPOSTRequest(url: Endpoints.session.url, responseType: LoginResponse.self, body: body) { response, error in
             if let response = response {
                 Auth.accountKey = response.account.key
                 Auth.sessionId = response.session.id
+                completion(true, nil)
+            } else {
+                completion(false, error)
+            }
+        }
+    }
+    
+    class func logout(completion: @escaping (Bool, Error?) -> Void) {
+        let body = LogoutRequest()
+        taskForDELETERequest(url: Endpoints.session.url, responseType: LogoutResponse.self, body: body) { response, error in
+            if let response = response {
+                print(response)
+                //Auth.accountKey = response.account.key
+                //Auth.sessionId = response.session.id
                 completion(true, nil)
             } else {
                 completion(false, error)

@@ -10,7 +10,14 @@ import UIKit
 
 class LocationsViewController: UITableViewController {
     
+    // MARK: Outlets
+    
+    @IBOutlet weak var logoutButton: UIBarButtonItem!
+    
     let reuseIdentifier: String = "LocationTableViewCell"
+    let loginIdentifier = "LoginViewController"
+    
+    // MARK: Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,5 +50,33 @@ class LocationsViewController: UITableViewController {
         UIApplication.shared.open(url)
         
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    // MARK: Actions
+    
+    @IBAction func logoutTapped(_ sender: Any) {
+        OTMClient.logout(completion: handleLogout(success:error:))
+    }
+    
+    // MARK: Private Methods
+    
+    func handleLogout(success: Bool, error: Error?) {
+        if (success) {
+            print("Logout Success")
+        } else {
+            print(error ?? "")
+        }
+        OTMModel.isAuthenticated = false
+        displayLogin()
+    }
+    
+    func displayLogin() {
+        if !OTMModel.isAuthenticated {
+            let loginVC = storyboard?.instantiateViewController(withIdentifier: loginIdentifier) as! LoginViewController
+            
+            loginVC.modalPresentationStyle = .fullScreen
+            
+            present(loginVC, animated: true, completion: nil)
+        }
     }
 }

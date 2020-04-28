@@ -80,9 +80,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <navigationBar key="tableHeaderView" contentMode="scaleToFill" id="NXQ-Dq-6W7">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <items>
+                                <navigationItem title="On the Map" id="lkx-St-bhR">
+                                    <barButtonItem key="leftBarButtonItem" title="LOGOUT" id="Al4-pP-nGq" userLabel="Logout Button">
+                                        <connections>
+                                            <action selector="logoutTapped:" destination="Sfw-iS-P2I" id="6ap-CM-cxf"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </navigationItem>
+                            </items>
+                        </navigationBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LocationTableViewCell" textLabel="Xw5-1R-oSA" detailTextLabel="KE5-TR-MkE" imageView="kCc-li-Bej" style="IBUITableViewCellStyleSubtitle" id="Rqm-Pn-WCV">
-                                <rect key="frame" x="0.0" y="28" width="414" height="55.5"/>
+                                <rect key="frame" x="0.0" y="72" width="414" height="55.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Rqm-Pn-WCV" id="WPf-V2-SVW">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="55.5"/>
@@ -117,6 +130,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="r7j-CC-1Zt"/>
                     <connections>
+                        <outlet property="logoutButton" destination="Al4-pP-nGq" id="syg-xM-RY7"/>
                         <outlet property="tableView" destination="1ag-xc-xso" id="Cw5-nk-ObL"/>
                     </connections>
                 </tableViewController>
@@ -138,9 +152,8 @@
                                     <outlet property="delegate" destination="BSa-UQ-0sd" id="un3-C4-bCv"/>
                                 </connections>
                             </mapView>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FNO-7h-nJL">
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FNO-7h-nJL">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="On the Map" id="OLf-Le-tCp">
                                         <barButtonItem key="leftBarButtonItem" title="LOGOUT" id="LgH-7v-HKq" userLabel="Logout Button">
@@ -160,6 +173,9 @@
                         <constraints>
                             <constraint firstItem="5uf-Vj-eX5" firstAttribute="leading" secondItem="jDW-Mk-oJ5" secondAttribute="leading" id="6oS-TF-3eH"/>
                             <constraint firstItem="jDW-Mk-oJ5" firstAttribute="bottom" secondItem="5uf-Vj-eX5" secondAttribute="bottom" id="F3y-3S-bYT"/>
+                            <constraint firstItem="jDW-Mk-oJ5" firstAttribute="trailing" secondItem="FNO-7h-nJL" secondAttribute="trailing" id="Ls5-Gq-SAn"/>
+                            <constraint firstItem="FNO-7h-nJL" firstAttribute="top" secondItem="jDW-Mk-oJ5" secondAttribute="top" id="izC-1p-BmY"/>
+                            <constraint firstItem="FNO-7h-nJL" firstAttribute="leading" secondItem="jDW-Mk-oJ5" secondAttribute="leading" id="p8V-qv-BU8"/>
                             <constraint firstItem="jDW-Mk-oJ5" firstAttribute="trailing" secondItem="5uf-Vj-eX5" secondAttribute="trailing" id="tt5-Ig-R3P"/>
                             <constraint firstItem="5uf-Vj-eX5" firstAttribute="top" secondItem="jDW-Mk-oJ5" secondAttribute="top" id="vr1-O0-Fgg"/>
                         </constraints>
@@ -217,7 +233,6 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="0dY-Yg-toV" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="mappin.and.ellipse" catalog="system" id="N2k-G0-T0d"/>
                     <toolbarItems/>
-                    <nil key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Pwm-Rd-RZe">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
