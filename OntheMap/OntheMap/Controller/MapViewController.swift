@@ -13,18 +13,30 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var mapView: MKMapView!
     
     let reuseIdentifier: String = "Pin"
+    let loginIdentifier = "LoginViewController"
     
     override func viewDidLoad() {
         super.viewDidLoad()
                 
         _ = OTMClient.getStudentLocations() { locations, error in
             if let error = error {
-                print(error)
+                print(error.localizedDescription)
             }
 
             OTMModel.studentLocations = locations
             self.refreshMap()
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        displayLogin()
+    }
+    
+    @IBAction func logoutTapped(_ sender: Any) {
+        //TODO: Kill session on server
+        print("kill session")
+        OTMModel.isAuthenticated = false
+        displayLogin()
     }
     
     func refreshMap() {
@@ -67,6 +79,16 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             if let url = URL(string: ((view.annotation?.subtitle) ?? "") ?? "") {
                 UIApplication.shared.open(url)
             }
+        }
+    }
+    
+    func displayLogin() {
+        if !OTMModel.isAuthenticated {
+            let loginVC = storyboard?.instantiateViewController(withIdentifier: loginIdentifier) as! LoginViewController
+            
+            loginVC.modalPresentationStyle = .fullScreen
+            
+            present(loginVC, animated: true, completion: nil)
         }
     }
 }

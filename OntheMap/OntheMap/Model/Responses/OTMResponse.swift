@@ -10,11 +10,12 @@ import Foundation
 
 struct OTMResponse: Codable
 {
-    let statusMessage: String
+    //let status: String
+    let error: String
 }
 
 extension OTMResponse: LocalizedError {
     var errorDescription: String? {
-        return statusMessage
+        return error
     }
 }

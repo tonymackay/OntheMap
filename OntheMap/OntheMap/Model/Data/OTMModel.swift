@@ -10,4 +10,5 @@ import Foundation
 
 class OTMModel {
     static var studentLocations = [StudentInformation]()
+    static var isAuthenticated = false
 }
