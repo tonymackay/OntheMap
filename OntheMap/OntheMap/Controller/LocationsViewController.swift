@@ -14,15 +14,7 @@ class LocationsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        _ = OTMClient.getStudentLocations() { locations, error in
-            if let error = error {
-                print(error)
-            }
-            
-            OTMModel.studentLocations = locations
-            self.tableView.reloadData()
-        }
+        tableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {

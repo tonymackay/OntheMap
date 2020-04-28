@@ -75,17 +75,34 @@
             </objects>
             <point key="canvasLocation" x="3910" y="435"/>
         </scene>
-        <!--View Controller-->
+        <!--Map View Controller-->
         <scene sceneID="ah8-rr-jeH">
             <objects>
-                <viewController id="BSa-UQ-0sd" sceneMemberID="viewController">
+                <viewController id="BSa-UQ-0sd" customClass="MapViewController" customModule="OntheMap" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7LY-l8-QA1">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="5uf-Vj-eX5">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BSa-UQ-0sd" id="un3-C4-bCv"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="5uf-Vj-eX5" firstAttribute="leading" secondItem="jDW-Mk-oJ5" secondAttribute="leading" id="6oS-TF-3eH"/>
+                            <constraint firstItem="jDW-Mk-oJ5" firstAttribute="bottom" secondItem="5uf-Vj-eX5" secondAttribute="bottom" id="F3y-3S-bYT"/>
+                            <constraint firstItem="jDW-Mk-oJ5" firstAttribute="trailing" secondItem="5uf-Vj-eX5" secondAttribute="trailing" id="tt5-Ig-R3P"/>
+                            <constraint firstItem="5uf-Vj-eX5" firstAttribute="top" secondItem="jDW-Mk-oJ5" secondAttribute="top" id="vr1-O0-Fgg"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="jDW-Mk-oJ5"/>
                     </view>
                     <navigationItem key="navigationItem" id="9yt-AS-C8M"/>
+                    <connections>
+                        <outlet property="mapView" destination="5uf-Vj-eX5" id="tXb-ps-iY8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6hp-ZM-XQN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
