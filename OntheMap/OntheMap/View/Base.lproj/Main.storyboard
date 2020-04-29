@@ -164,11 +164,18 @@
                                                 <action selector="logoutTapped:" destination="BSa-UQ-0sd" id="zl2-Qg-OHQ"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="hlx-zg-Iv1">
-                                            <connections>
-                                                <segue destination="KNp-1G-nO7" kind="presentation" identifier="addLocationSegue" modalPresentationStyle="fullScreen" id="jBc-VJ-M6o"/>
-                                            </connections>
-                                        </barButtonItem>
+                                        <rightBarButtonItems>
+                                            <barButtonItem image="plus" catalog="system" id="hlx-zg-Iv1" userLabel="Add Button Item">
+                                                <connections>
+                                                    <segue destination="KNp-1G-nO7" kind="presentation" identifier="addLocationSegue" modalPresentationStyle="fullScreen" id="jBc-VJ-M6o"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem image="arrow.clockwise" catalog="system" id="tsl-ax-k2a" userLabel="Refresh Button Item">
+                                                <connections>
+                                                    <action selector="refreshTapped:" destination="BSa-UQ-0sd" id="o7E-0A-3ye"/>
+                                                </connections>
+                                            </barButtonItem>
+                                        </rightBarButtonItems>
                                     </navigationItem>
                                 </items>
                                 <connections>
@@ -191,6 +198,7 @@
                     <navigationItem key="navigationItem" id="9yt-AS-C8M"/>
                     <connections>
                         <outlet property="mapView" destination="5uf-Vj-eX5" id="tXb-ps-iY8"/>
+                        <outlet property="refreshButton" destination="tsl-ax-k2a" id="rYl-f9-ho7"/>
                         <segue destination="BYZ-38-t0r" kind="presentation" identifier="loginSegue" modalPresentationStyle="fullScreen" id="aD3-yq-GLK"/>
                     </connections>
                 </viewController>
@@ -393,6 +401,7 @@
         <segue reference="aD3-yq-GLK"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
         <image name="list.dash" catalog="system" width="128" height="85"/>
         <image name="mappin.and.ellipse" catalog="system" width="118" height="128"/>
         <image name="plus" catalog="system" width="128" height="113"/>

@@ -14,6 +14,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     // MARK: Outlets
     
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var refreshButton: UIBarButtonItem!
     
     let reuseIdentifier: String = "Pin"
     let loginIdentifier = "loginSegue"
@@ -67,9 +68,15 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         OTMClient.logout(completion: handleLogout(success:error:))
     }
     
+    @IBAction func refreshTapped(_ sender: Any) {
+        print("refresh tapped")
+        download()
+    }
+    
     // MARK: Private Methods
     
     func download() {
+        refreshButton.isEnabled = false
         _ = OTMClient.getStudentLocations() { locations, error in
             if let error = error {
                 print(error.localizedDescription)
@@ -77,6 +84,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 
             OTMModel.studentLocations = locations
             self.refreshMap()
+            self.refreshButton.isEnabled = true
         }
     }
     
