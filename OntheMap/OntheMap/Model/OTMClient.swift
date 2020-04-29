@@ -13,6 +13,8 @@ class OTMClient
     struct Auth {
         static var accountKey = ""
         static var sessionId = ""
+        static var firstName = "Arnold"
+        static var lastName = "Schwarzenegger"
     }
     
     enum Endpoints {
@@ -21,6 +23,7 @@ class OTMClient
         case getStudentLocations
         case session
         case studentLocation
+        case userData
         
         var stringValue: String {
             switch self {
@@ -30,6 +33,8 @@ class OTMClient
                 return Endpoints.base + "/session"
             case .studentLocation:
                 return Endpoints.base + "/StudentLocation"
+            case .userData:
+                return Endpoints.base + "/users/\(Auth.accountKey)"
             }
         }
         
@@ -39,7 +44,7 @@ class OTMClient
     }
     
     @discardableResult
-    class func taskForGETRequest<ResponseType: Decodable>(url: URL, responseType: ResponseType.Type, completion: @escaping (ResponseType?, Error?) -> Void) -> URLSessionDataTask {
+    class func taskForGETRequest<ResponseType: Decodable>(url: URL, responseType: ResponseType.Type, trim: Bool = false, completion: @escaping (ResponseType?, Error?) -> Void) -> URLSessionDataTask {
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data else {
                 DispatchQueue.main.async {
@@ -47,9 +52,13 @@ class OTMClient
                 }
                 return
             }
+            
+            let newData = data.subdata(in: 5..<data.count)
+            print(String(data: newData, encoding: .utf8) ?? "")
+            
             let decoder = JSONDecoder()
             do {
-                let responseObject = try decoder.decode(ResponseType.self, from: data)
+                let responseObject = try decoder.decode(ResponseType.self, from: trim ? newData : data)
                 DispatchQueue.main.async {
                     completion(responseObject, nil)
                 }
@@ -58,7 +67,7 @@ class OTMClient
                     completion(nil, error)
                 }
                 do {
-                    let errorResponse = try decoder.decode(OTMResponse.self, from: data) as Error
+                    let errorResponse = try decoder.decode(OTMResponse.self, from: trim ? newData : data) as Error
                     DispatchQueue.main.async {
                         completion(nil, errorResponse)
                     }
@@ -201,9 +210,19 @@ class OTMClient
         }
     }
     
+    class func getUserData(completion: @escaping (UserDataResponse?, Error?) -> Void) {
+        taskForGETRequest(url: Endpoints.userData.url, responseType: UserDataResponse.self, trim: true) { response, error in
+            if let response = response {
+                completion(response, nil)
+            } else {
+                completion(nil, error)
+            }
+        }
+    }
+    
     class func addLocation(address: String, link: String, latitude: Double, longitude: Double, completion: @escaping (Bool, Error?) -> Void) {
         let body = LocationRequest(
-            uniqueKey: Auth.accountKey, firstName: "Arnold", lastName: "Schwarzenegger", mapString: address, mediaURL: link, latitude: latitude, longitude: longitude
+            uniqueKey: Auth.accountKey, firstName: Auth.firstName, lastName: Auth.lastName, mapString: address, mediaURL: link, latitude: latitude, longitude: longitude
         )
         
         taskForPOSTRequest(url: Endpoints.studentLocation.url, responseType: StudentLocationResponse.self, body: body, trim: false) { response, error in

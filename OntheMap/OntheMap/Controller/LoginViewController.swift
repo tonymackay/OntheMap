@@ -38,12 +38,25 @@ class LoginViewController: UIViewController {
     
     func handleLoginResponse(success: Bool, error: Error?) {
         if success {
-            OTMModel.isAuthenticated = true
-            performSegue(withIdentifier: segueIdentifier, sender: nil)
+            OTMClient.getUserData(completion: handleGetUserData(userData:error:))
         } else {
             showAlert(title: "Login Failed", message: error?.localizedDescription ?? "")
             setLoggingIn(false)
             clearTextFields()
+        }
+    }
+    
+    func handleGetUserData(userData: UserDataResponse?, error: Error?) {
+        if let userData = userData {
+            OTMModel.isAuthenticated = true
+            OTMClient.Auth.firstName = userData.firstName
+            OTMClient.Auth.lastName = userData.lastName
+            performSegue(withIdentifier: segueIdentifier, sender: nil)
+        } else {
+            if let error = error {
+                print(error)
+                showAlert(title: "UserData Error", message: error.localizedDescription)
+            }
         }
     }
     
