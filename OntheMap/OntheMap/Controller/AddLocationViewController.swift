@@ -46,7 +46,7 @@ class AddLocationViewController: UIViewController {
         }
         
         if !linkIsValid(link: linkTextField.text) {
-            displayError(message: "Invalid URL")
+            showAlert(title: "Add Location Failed", message: "Invalid URL")
         }
         
         setLocating(true)
@@ -71,7 +71,7 @@ class AddLocationViewController: UIViewController {
 
         if let error = error {
             print("Unable to Forward Geocode Address (\(error))")
-            displayError(message: "Unable to Find Location for Address")
+            showAlert(title: "Add Location Failed", message: "Unable to Find Location for Address")
 
         } else {
             var location: CLLocation?
@@ -83,7 +83,7 @@ class AddLocationViewController: UIViewController {
             if let location = location {
                 showMap(coordinate: location.coordinate)
             } else {
-               displayError(message: "No Matching Location Found")
+               showAlert(title: "Add Location Failed", message: "No Matching Location Found")
             }
         }
     }
@@ -105,12 +105,5 @@ class AddLocationViewController: UIViewController {
         let location = Location(address: address, link: link, latitude: coordinate.latitude, longitude: coordinate.longitude)
         
         performSegue(withIdentifier: segueId, sender: location)
-    }
-    
-    func displayError(message: String) {
-        let alertVC = UIAlertController(title: "Add Location Failed", message: message, preferredStyle: .alert)
-        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        
-        present(alertVC, animated: true, completion: nil)
     }
 }

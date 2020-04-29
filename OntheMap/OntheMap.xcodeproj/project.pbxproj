@@ -22,6 +22,7 @@
 		EA3006DC245958E4000F2551 /* AddLocationMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3006DB245958E4000F2551 /* AddLocationMapViewController.swift */; };
 		EA3006DE2459E3BF000F2551 /* LocationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3006DD2459E3BF000F2551 /* LocationRequest.swift */; };
 		EA3006E02459E5AE000F2551 /* StudentLocationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3006DF2459E5AE000F2551 /* StudentLocationResponse.swift */; };
+		EA3006E2245A247D000F2551 /* ViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3006E1245A247D000F2551 /* ViewController+Extensions.swift */; };
 		EAFA606E24574B9E00B5C061 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFA606D24574B9E00B5C061 /* AppDelegate.swift */; };
 		EAFA607024574B9E00B5C061 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFA606F24574B9E00B5C061 /* SceneDelegate.swift */; };
 		EAFA607224574B9E00B5C061 /* LocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFA607124574B9E00B5C061 /* LocationsViewController.swift */; };
@@ -46,6 +47,7 @@
 		EA3006DB245958E4000F2551 /* AddLocationMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationMapViewController.swift; sourceTree = "<group>"; };
 		EA3006DD2459E3BF000F2551 /* LocationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationRequest.swift; sourceTree = "<group>"; };
 		EA3006DF2459E5AE000F2551 /* StudentLocationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocationResponse.swift; sourceTree = "<group>"; };
+		EA3006E1245A247D000F2551 /* ViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extensions.swift"; sourceTree = "<group>"; };
 		EAFA606A24574B9E00B5C061 /* OntheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OntheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAFA606D24574B9E00B5C061 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EAFA606F24574B9E00B5C061 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 				EAFA607124574B9E00B5C061 /* LocationsViewController.swift */,
 				EA3006D9245958D1000F2551 /* AddLocationViewController.swift */,
 				EA3006DB245958E4000F2551 /* AddLocationMapViewController.swift */,
+				EA3006E1245A247D000F2551 /* ViewController+Extensions.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -247,6 +250,7 @@
 				EA2FBEE92458CE5600B2851D /* LogoutResponse.swift in Sources */,
 				EA2FBEE124582D5A00B2851D /* MapViewController.swift in Sources */,
 				EA3006E02459E5AE000F2551 /* StudentLocationResponse.swift in Sources */,
+				EA3006E2245A247D000F2551 /* ViewController+Extensions.swift in Sources */,
 				EA3006DA245958D1000F2551 /* AddLocationViewController.swift in Sources */,
 				EAFA606E24574B9E00B5C061 /* AppDelegate.swift in Sources */,
 				EA2FBED8245778DD00B2851D /* StudentInformation.swift in Sources */,

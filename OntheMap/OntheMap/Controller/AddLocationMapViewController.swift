@@ -77,7 +77,9 @@ class AddLocationMapViewController: UIViewController, MKMapViewDelegate {
             print("success")
             performSegue(withIdentifier: segueId, sender: nil)
         } else {
-            print(error ?? "")
+            if let error = error {
+                showAlert(title: "Failed to Add Location", message: error.localizedDescription)
+            }
         }
     }
     

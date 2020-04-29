@@ -79,9 +79,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         refreshButton.isEnabled = false
         _ = OTMClient.getStudentLocations() { locations, error in
             if let error = error {
-                print(error.localizedDescription)
+                self.showAlert(title: "Download Failed", message: error.localizedDescription)
             }
-
             OTMModel.studentLocations = locations
             self.refreshMap()
             self.refreshButton.isEnabled = true

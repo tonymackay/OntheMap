@@ -40,7 +40,7 @@ class LoginViewController: UIViewController {
             OTMModel.isAuthenticated = true
             performSegue(withIdentifier: segueIdentifier, sender: nil)
         } else {
-            showLoginFailure(message: error?.localizedDescription ?? "")
+            showAlert(title: "Login Failed", message: error?.localizedDescription ?? "")
             setLoggingIn(false)
             clearTextFields()
         }
@@ -61,11 +61,5 @@ class LoginViewController: UIViewController {
         emailTextField.text = ""
         passwordTextField.text = ""
         emailTextField.becomeFirstResponder()
-    }
-    
-    func showLoginFailure(message: String) {
-        let alertVC = UIAlertController(title: "Login Failed", message: message, preferredStyle: .alert)
-        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        present(alertVC, animated: true, completion: nil)
     }
 }
