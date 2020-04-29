@@ -12,10 +12,8 @@ class LocationsViewController: UITableViewController {
     
     // MARK: Outlets
     
-    @IBOutlet weak var logoutButton: UIBarButtonItem!
-    
     let reuseIdentifier: String = "LocationTableViewCell"
-    let loginIdentifier = "LoginViewController"
+    let loginIdentifier = "loginSegue"
     
     // MARK: Lifecycle
     
@@ -67,16 +65,6 @@ class LocationsViewController: UITableViewController {
             print(error ?? "")
         }
         OTMModel.isAuthenticated = false
-        displayLogin()
-    }
-    
-    func displayLogin() {
-        if !OTMModel.isAuthenticated {
-            let loginVC = storyboard?.instantiateViewController(withIdentifier: loginIdentifier) as! LoginViewController
-            
-            loginVC.modalPresentationStyle = .fullScreen
-            
-            present(loginVC, animated: true, completion: nil)
-        }
+        performSegue(withIdentifier: loginIdentifier, sender: nil)
     }
 }

@@ -20,6 +20,7 @@ class AddLocationMapViewController: UIViewController, MKMapViewDelegate {
     
     var location: Location?
     let reuseIdentifier: String = "Pin"
+    let segueId: String = "finishSegue"
 
     // MARK: Lifecycle Methods
     
@@ -64,10 +65,21 @@ class AddLocationMapViewController: UIViewController, MKMapViewDelegate {
     // MARK: Actions
     
     @IBAction func finishTapped(_ sender: Any) {
+        guard let location = location else { return }
         
+        OTMClient.addLocation(address: location.address, link: location.link, latitude: location.latitude, longitude: location.longitude, completion: handleResponse(success:error:))
     }
     
     // MARK: Methods
+    
+    func handleResponse(success: Bool, error: Error?) {
+        if success {
+            print("success")
+            performSegue(withIdentifier: segueId, sender: nil)
+        } else {
+            print(error ?? "")
+        }
+    }
     
     func showLocationOnMap(location: Location) {
         mapView.removeAnnotations(mapView.annotations)
@@ -82,5 +94,10 @@ class AddLocationMapViewController: UIViewController, MKMapViewDelegate {
         annotation.subtitle = location.link
     
         mapView.addAnnotation(annotation)
+        
+        // zoom to user location
+        let regionRadius: CLLocationDistance = 10000
+        let viewRegion = MKCoordinateRegion(center: coordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
+        mapView.setRegion(viewRegion, animated: false)
     }
 }

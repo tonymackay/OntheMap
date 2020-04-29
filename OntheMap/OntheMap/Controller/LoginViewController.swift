@@ -16,6 +16,10 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     
+    // MARK: Variables
+    
+    let segueIdentifier = "loggedInSegue"
+    
     // MARK: Lifecycle
     
     override func viewDidLoad() {
@@ -34,7 +38,7 @@ class LoginViewController: UIViewController {
     func handleLoginResponse(success: Bool, error: Error?) {
         if success {
             OTMModel.isAuthenticated = true
-            dismiss(animated: true, completion: nil)
+            performSegue(withIdentifier: segueIdentifier, sender: nil)
         } else {
             showLoginFailure(message: error?.localizedDescription ?? "")
             setLoggingIn(false)

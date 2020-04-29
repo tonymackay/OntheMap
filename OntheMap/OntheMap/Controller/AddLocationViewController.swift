@@ -18,7 +18,7 @@ class AddLocationViewController: UIViewController {
     @IBOutlet weak var linkTextField: UITextField!
     @IBOutlet weak var findLocationButton: UIButton!
     
-    let addLocationMapIdentifier = "AddLocationMapViewController"
+    let segueId = "addLocationMapSegue"
     let geocoder = CLGeocoder()
     
     // MARK: Lifecycle Methods
@@ -29,11 +29,16 @@ class AddLocationViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    // MARK: Actions
-    
-    @IBAction func cancelTapped(_ sender: Any) {
-        
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("prepare segue called: \(segue.identifier ?? "")")
+        if segue.identifier == segueId {
+            let addLocationMapVC = segue.destination as! AddLocationMapViewController
+            let location = sender as! Location
+            addLocationMapVC.location = location
+        }
     }
+    
+    // MARK: Actions
     
     @IBAction func findLocationTapped(_ sender: Any) {
         guard let address = locationTextField.text else {
@@ -96,14 +101,10 @@ class AddLocationViewController: UIViewController {
         
         guard let address = locationTextField.text else { return }
         guard let link = linkTextField.text else { return }
-        
-        let location = Location(address: address, link: link, latitude: coordinate.latitude, longitude: coordinate.longitude)
 
-        let mapVC = storyboard?.instantiateViewController(withIdentifier: addLocationMapIdentifier) as! AddLocationMapViewController
+        let location = Location(address: address, link: link, latitude: coordinate.latitude, longitude: coordinate.longitude)
         
-        mapVC.location = location
-        mapVC.modalPresentationStyle = .fullScreen
-        navigationController?.pushViewController(mapVC, animated: true)
+        performSegue(withIdentifier: segueId, sender: location)
     }
     
     func displayError(message: String) {

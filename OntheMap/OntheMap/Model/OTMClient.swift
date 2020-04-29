@@ -20,6 +20,7 @@ class OTMClient
         
         case getStudentLocations
         case session
+        case studentLocation
         
         var stringValue: String {
             switch self {
@@ -27,6 +28,8 @@ class OTMClient
                 return Endpoints.base + "/StudentLocation?limit=100&order=-updatedAt"
             case .session:
                 return Endpoints.base + "/session"
+            case .studentLocation:
+                return Endpoints.base + "/StudentLocation"
             }
         }
         
@@ -70,7 +73,7 @@ class OTMClient
         return task
     }
     
-    class func taskForPOSTRequest<RequestType: Encodable, ResponseType: Decodable>(url: URL, responseType: ResponseType.Type, body: RequestType, completion: @escaping (ResponseType?, Error?) -> Void) {
+    class func taskForPOSTRequest<RequestType: Encodable, ResponseType: Decodable>(url: URL, responseType: ResponseType.Type, body: RequestType, trim: Bool = true, completion: @escaping (ResponseType?, Error?) -> Void) {
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -86,18 +89,19 @@ class OTMClient
                 return
             }
             
+            
             let newData = data.subdata(in: 5..<data.count)
             print(String(data: newData, encoding: .utf8) ?? "")
             
             let decoder = JSONDecoder()
             do {
-                let responseObject = try decoder.decode(ResponseType.self, from: newData)
+                let responseObject = try decoder.decode(ResponseType.self, from: trim ? newData : data)
                 DispatchQueue.main.async {
                     completion(responseObject, nil)
                 }
             } catch {
                 do {
-                    let errorResponse = try decoder.decode(OTMResponse.self, from: newData) as Error
+                    let errorResponse = try decoder.decode(OTMResponse.self, from: trim ? newData : data) as Error
                     DispatchQueue.main.async {
                         completion(nil, errorResponse)
                     }
@@ -190,8 +194,21 @@ class OTMClient
         taskForDELETERequest(url: Endpoints.session.url, responseType: LogoutResponse.self, body: body) { response, error in
             if let response = response {
                 print(response)
-                //Auth.accountKey = response.account.key
-                //Auth.sessionId = response.session.id
+                completion(true, nil)
+            } else {
+                completion(false, error)
+            }
+        }
+    }
+    
+    class func addLocation(address: String, link: String, latitude: Double, longitude: Double, completion: @escaping (Bool, Error?) -> Void) {
+        let body = LocationRequest(
+            uniqueKey: Auth.accountKey, firstName: "Arnold", lastName: "Schwarzenegger", mapString: address, mediaURL: link, latitude: latitude, longitude: longitude
+        )
+        
+        taskForPOSTRequest(url: Endpoints.studentLocation.url, responseType: StudentLocationResponse.self, body: body, trim: false) { response, error in
+            if let response = response {
+                print(response)
                 completion(true, nil)
             } else {
                 completion(false, error)

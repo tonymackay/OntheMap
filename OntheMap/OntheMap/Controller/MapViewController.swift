@@ -16,7 +16,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var mapView: MKMapView!
     
     let reuseIdentifier: String = "Pin"
-    let loginIdentifier = "LoginViewController"
+    let loginIdentifier = "loginSegue"
+    let addLocationIdentifier = "AddLocationViewController"
     
     // MARK: Lifecycle
     
@@ -34,7 +35,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        displayLogin()
+        if !OTMModel.isAuthenticated {
+            performSegue(withIdentifier: loginIdentifier, sender: nil)
+        }
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -64,6 +67,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     // MARK: Actions
     
+    @IBAction func cancel(_ unwindSegue: UIStoryboardSegue) {}
+    
     @IBAction func logoutTapped(_ sender: Any) {
         OTMClient.logout(completion: handleLogout(success:error:))
     }
@@ -77,7 +82,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             print(error ?? "")
         }
         OTMModel.isAuthenticated = false
-        displayLogin()
+        performSegue(withIdentifier: loginIdentifier, sender: nil)
     }
     
     func refreshMap() {
@@ -96,15 +101,5 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             annotations.append(annotation)
         }
         mapView.addAnnotations(annotations)
-    }
-    
-    func displayLogin() {
-        if !OTMModel.isAuthenticated {
-            let loginVC = storyboard?.instantiateViewController(withIdentifier: loginIdentifier) as! LoginViewController
-            
-            loginVC.modalPresentationStyle = .fullScreen
-            
-            present(loginVC, animated: true, completion: nil)
-        }
     }
 }
