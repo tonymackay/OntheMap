@@ -23,20 +23,14 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
-        _ = OTMClient.getStudentLocations() { locations, error in
-            if let error = error {
-                print(error.localizedDescription)
-            }
-
-            OTMModel.studentLocations = locations
-            self.refreshMap()
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        print("viewDidAppear")
         if !OTMModel.isAuthenticated {
             performSegue(withIdentifier: loginIdentifier, sender: nil)
+        } else {
+            download()
         }
     }
     
@@ -74,6 +68,17 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     // MARK: Private Methods
+    
+    func download() {
+        _ = OTMClient.getStudentLocations() { locations, error in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+
+            OTMModel.studentLocations = locations
+            self.refreshMap()
+        }
+    }
     
     func handleLogout(success: Bool, error: Error?) {
         if (success) {
