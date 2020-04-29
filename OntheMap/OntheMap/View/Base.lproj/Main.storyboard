@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Yx9-FO-Ghm">
-                                <rect key="frame" x="25" y="94" width="364" height="170"/>
+                                <rect key="frame" x="25" y="94" width="364" height="200"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="riH-ah-aS9" userLabel="Email Text Field">
                                         <rect key="frame" x="0.0" y="0.0" width="364" height="50"/>
@@ -48,6 +48,9 @@
                                             <action selector="loginTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="okg-l8-gWy"/>
                                         </connections>
                                     </button>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="UNC-nu-GaO">
+                                        <rect key="frame" x="0.0" y="180" width="364" height="20"/>
+                                    </activityIndicatorView>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -63,6 +66,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="UNC-nu-GaO" id="Yha-yc-No7"/>
                         <outlet property="emailTextField" destination="riH-ah-aS9" id="br5-En-bh9"/>
                         <outlet property="loginButton" destination="KcP-OL-e2M" id="jpm-Ur-EGq"/>
                         <outlet property="passwordTextField" destination="gFy-8j-eOl" id="Lra-AG-7zV"/>
@@ -215,7 +219,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="KWK-B6-dXN">
-                                <rect key="frame" x="30" y="144" width="354" height="170"/>
+                                <rect key="frame" x="30" y="144" width="354" height="200"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3ud-sc-JRY" userLabel="Location Text Field">
                                         <rect key="frame" x="0.0" y="0.0" width="354" height="50"/>
@@ -248,6 +252,9 @@
                                             <action selector="loginTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gPN-xb-sTl"/>
                                         </connections>
                                     </button>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="da3-sq-e5x">
+                                        <rect key="frame" x="0.0" y="180" width="354" height="20"/>
+                                    </activityIndicatorView>
                                 </subviews>
                             </stackView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oII-hh-exW">
@@ -276,6 +283,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Add Location" id="7vn-2P-yAx"/>
                     <connections>
+                        <outlet property="activityView" destination="da3-sq-e5x" id="10e-CB-YF6"/>
                         <outlet property="findLocationButton" destination="l9s-0B-YJn" id="8la-b1-wTV"/>
                         <outlet property="linkTextField" destination="zfy-XD-8eK" id="Jez-BA-Xte"/>
                         <outlet property="locationTextField" destination="3ud-sc-JRY" id="UQD-kY-W8d"/>

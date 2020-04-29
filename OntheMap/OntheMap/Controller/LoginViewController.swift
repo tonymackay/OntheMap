@@ -15,6 +15,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     // MARK: Variables
     
@@ -48,9 +49,9 @@ class LoginViewController: UIViewController {
     
     func setLoggingIn(_ loggingIn: Bool) {
         if loggingIn {
-            //activityIndicator.startAnimating()
+            activityIndicator.startAnimating()
         } else {
-            //activityIndicator.stopAnimating()
+            activityIndicator.stopAnimating()
         }
         emailTextField.isEnabled = !loggingIn
         passwordTextField.isEnabled = !loggingIn

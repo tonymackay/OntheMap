@@ -17,6 +17,7 @@ class AddLocationViewController: UIViewController {
     @IBOutlet weak var locationTextField: UITextField!
     @IBOutlet weak var linkTextField: UITextField!
     @IBOutlet weak var findLocationButton: UIButton!
+    @IBOutlet weak var activityView: UIActivityIndicatorView!
     
     let segueId = "addLocationMapSegue"
     let geocoder = CLGeocoder()
@@ -57,9 +58,9 @@ class AddLocationViewController: UIViewController {
     
     func setLocating(_ locating: Bool) {
         if locating {
-            //activityIndicator.startAnimating()
+            activityView.startAnimating()
         } else {
-            //activityIndicator.stopAnimating()
+            activityView.stopAnimating()
         }
         locationTextField.isEnabled = !locating
         linkTextField.isEnabled = !locating
