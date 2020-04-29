@@ -18,6 +18,8 @@
 		EA2FBEE72458BEC400B2851D /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2FBEE62458BEC400B2851D /* LoginResponse.swift */; };
 		EA2FBEE92458CE5600B2851D /* LogoutResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2FBEE82458CE5600B2851D /* LogoutResponse.swift */; };
 		EA2FBEEB2458CF3A00B2851D /* LogoutRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2FBEEA2458CF3A00B2851D /* LogoutRequest.swift */; };
+		EA3006DA245958D1000F2551 /* AddLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3006D9245958D1000F2551 /* AddLocationViewController.swift */; };
+		EA3006DC245958E4000F2551 /* AddLocationMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3006DB245958E4000F2551 /* AddLocationMapViewController.swift */; };
 		EAFA606E24574B9E00B5C061 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFA606D24574B9E00B5C061 /* AppDelegate.swift */; };
 		EAFA607024574B9E00B5C061 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFA606F24574B9E00B5C061 /* SceneDelegate.swift */; };
 		EAFA607224574B9E00B5C061 /* LocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFA607124574B9E00B5C061 /* LocationsViewController.swift */; };
@@ -38,6 +40,8 @@
 		EA2FBEE62458BEC400B2851D /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 		EA2FBEE82458CE5600B2851D /* LogoutResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutResponse.swift; sourceTree = "<group>"; };
 		EA2FBEEA2458CF3A00B2851D /* LogoutRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutRequest.swift; sourceTree = "<group>"; };
+		EA3006D9245958D1000F2551 /* AddLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationViewController.swift; sourceTree = "<group>"; };
+		EA3006DB245958E4000F2551 /* AddLocationMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationMapViewController.swift; sourceTree = "<group>"; };
 		EAFA606A24574B9E00B5C061 /* OntheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OntheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAFA606D24574B9E00B5C061 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EAFA606F24574B9E00B5C061 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -65,6 +69,8 @@
 				EA2FBEE2245867DA00B2851D /* LoginViewController.swift */,
 				EA2FBEE024582D5A00B2851D /* MapViewController.swift */,
 				EAFA607124574B9E00B5C061 /* LocationsViewController.swift */,
+				EA3006D9245958D1000F2551 /* AddLocationViewController.swift */,
+				EA3006DB245958E4000F2551 /* AddLocationMapViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -234,10 +240,12 @@
 				EA2FBED42457735900B2851D /* OTMClient.swift in Sources */,
 				EA2FBEE92458CE5600B2851D /* LogoutResponse.swift in Sources */,
 				EA2FBEE124582D5A00B2851D /* MapViewController.swift in Sources */,
+				EA3006DA245958D1000F2551 /* AddLocationViewController.swift in Sources */,
 				EAFA606E24574B9E00B5C061 /* AppDelegate.swift in Sources */,
 				EA2FBED8245778DD00B2851D /* StudentInformation.swift in Sources */,
 				EA2FBEDB2457798F00B2851D /* OTMModel.swift in Sources */,
 				EA2FBEE3245867DA00B2851D /* LoginViewController.swift in Sources */,
+				EA3006DC245958E4000F2551 /* AddLocationMapViewController.swift in Sources */,
 				EA2FBEEB2458CF3A00B2851D /* LogoutRequest.swift in Sources */,
 				EAFA607024574B9E00B5C061 /* SceneDelegate.swift in Sources */,
 				EA2FBEE52458BCE200B2851D /* LoginRequest.swift in Sources */,

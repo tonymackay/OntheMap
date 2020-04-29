@@ -37,6 +37,31 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         displayLogin()
     }
     
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier) as? MKPinAnnotationView
+
+        if pinView == nil {
+            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
+            pinView!.canShowCallout = true
+            pinView!.pinTintColor = .red
+            pinView!.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+        }
+        else {
+            pinView!.annotation = annotation
+        }
+        
+        return pinView
+    }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        if control == view.rightCalloutAccessoryView {
+            if let url = URL(string: ((view.annotation?.subtitle) ?? "") ?? "") {
+                UIApplication.shared.open(url)
+            }
+        }
+    }
+    
     // MARK: Actions
     
     @IBAction func logoutTapped(_ sender: Any) {
@@ -71,31 +96,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             annotations.append(annotation)
         }
         mapView.addAnnotations(annotations)
-    }
-    
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        
-        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier) as? MKPinAnnotationView
-
-        if pinView == nil {
-            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
-            pinView!.canShowCallout = true
-            pinView!.pinTintColor = .red
-            pinView!.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
-        }
-        else {
-            pinView!.annotation = annotation
-        }
-        
-        return pinView
-    }
-    
-    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        if control == view.rightCalloutAccessoryView {
-            if let url = URL(string: ((view.annotation?.subtitle) ?? "") ?? "") {
-                UIApplication.shared.open(url)
-            }
-        }
     }
     
     func displayLogin() {

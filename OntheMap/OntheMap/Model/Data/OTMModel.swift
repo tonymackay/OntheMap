@@ -8,6 +8,14 @@
 
 import Foundation
 
+struct Location
+{
+    let address: String
+    let link: String
+    let latitude: Double
+    let longitude: Double
+}
+
 class OTMModel {
     static var studentLocations = [StudentInformation]()
     static var isAuthenticated = false
