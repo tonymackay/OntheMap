@@ -203,6 +203,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="9yt-AS-C8M"/>
                     <connections>
+                        <outlet property="addLocationButton" destination="hlx-zg-Iv1" id="Kzx-R2-5bF"/>
+                        <outlet property="logoutButton" destination="LgH-7v-HKq" id="7tB-CJ-XuH"/>
                         <outlet property="mapView" destination="5uf-Vj-eX5" id="tXb-ps-iY8"/>
                         <outlet property="refreshButton" destination="tsl-ax-k2a" id="rYl-f9-ho7"/>
                     </connections>
@@ -332,7 +334,7 @@
                                     <navigationItem title="Add Location" id="ZWL-Hp-TrV">
                                         <barButtonItem key="leftBarButtonItem" title="CANCEL" id="VQg-Y4-Bz3">
                                             <connections>
-                                                <action selector="cancelTapped:" destination="C36-VH-stP" id="w3S-85-c6r"/>
+                                                <segue destination="c36-Tz-oFk" kind="unwind" unwindAction="cancel:" id="Ihz-sG-UmQ"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -357,7 +359,7 @@
                     <connections>
                         <outlet property="finishButton" destination="vZu-3F-xRT" id="bxy-8N-8Me"/>
                         <outlet property="mapView" destination="YMT-l3-3Er" id="E72-UX-gka"/>
-                        <segue destination="c36-Tz-oFk" kind="unwind" identifier="finishSegue" unwindAction="cancel:" id="egY-dw-9Wa"/>
+                        <segue destination="c36-Tz-oFk" kind="unwind" identifier="finishSegue" unwindAction="cancelWithRefresh:" id="TEK-zl-eyR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mDr-qJ-o0c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

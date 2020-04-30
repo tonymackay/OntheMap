@@ -15,6 +15,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var refreshButton: UIBarButtonItem!
+    @IBOutlet weak var logoutButton: UIBarButtonItem!
+    @IBOutlet weak var addLocationButton: UIBarButtonItem!
     
     let reuseIdentifier: String = "Pin"
     let loginIdentifier = "loginSegue"
@@ -23,20 +25,16 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     // MARK: Lifecycle
     
     override func viewDidLoad() {
+        print("map view loaded")
         super.viewDidLoad()
+        download()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         print("viewDidAppear")
-        if !OTMModel.isAuthenticated {
-            performSegue(withIdentifier: loginIdentifier, sender: nil)
-        } else {
-            download()
-        }
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        
         var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier) as? MKPinAnnotationView
 
         if pinView == nil {
@@ -64,6 +62,10 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     @IBAction func cancel(_ unwindSegue: UIStoryboardSegue) {}
     
+    @IBAction func cancelWithRefresh(_ unwindSegue: UIStoryboardSegue) {
+        download()
+    }
+    
     @IBAction func logoutTapped(_ sender: Any) {
         OTMClient.logout(completion: handleLogout(success:error:))
     }
@@ -76,14 +78,14 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     // MARK: Private Methods
     
     func download() {
-        refreshButton.isEnabled = false
+        setRefreshing(refreshing: true)
         _ = OTMClient.getStudentLocations() { locations, error in
             if let error = error {
                 self.showAlert(title: "Download Failed", message: error.localizedDescription)
             }
             OTMModel.studentLocations = locations
             self.refreshMap()
-            self.refreshButton.isEnabled = true
+            self.setRefreshing(refreshing: false)
         }
     }
     
@@ -95,7 +97,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
         OTMModel.isAuthenticated = false
         dismiss(animated: true, completion: nil)
-        //performSegue(withIdentifier: loginIdentifier, sender: nil)
     }
     
     func refreshMap() {
@@ -114,5 +115,11 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             annotations.append(annotation)
         }
         mapView.addAnnotations(annotations)
+    }
+    
+    func setRefreshing(refreshing: Bool) {
+        refreshButton.isEnabled = !refreshing
+        logoutButton.isEnabled = !refreshing
+        addLocationButton.isEnabled = !refreshing
     }
 }
