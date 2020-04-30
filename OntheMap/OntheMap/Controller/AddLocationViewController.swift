@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 
-class AddLocationViewController: UIViewController {
+class AddLocationViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: Outlets
     
@@ -26,8 +26,8 @@ class AddLocationViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        locationTextField.delegate = self
+        linkTextField.delegate = self
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -39,9 +39,26 @@ class AddLocationViewController: UIViewController {
         }
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == locationTextField {
+            textField.resignFirstResponder()
+            linkTextField.becomeFirstResponder()
+        } else if textField == linkTextField {
+            textField.resignFirstResponder()
+            locate()
+        }
+        return true
+    }
+    
     // MARK: Actions
     
     @IBAction func findLocationTapped(_ sender: Any) {
+        locate()
+    }
+    
+    // MARK: Methods
+    
+    func locate() {
         guard let address = locationTextField.text else {
             return
         }
