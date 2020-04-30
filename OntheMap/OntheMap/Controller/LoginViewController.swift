@@ -19,7 +19,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: Variables
     
-    let segueIdentifier = "loggedInSegue"
+    let segueIdentifier = "loginSegue"
     
     // MARK: Lifecycle
     
@@ -54,12 +54,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func handleLoginResponse(success: Bool, error: Error?) {
+        setLoggingIn(false)
+        clearTextFields()
+        
         if success {
             OTMClient.getUserData(completion: handleGetUserData(userData:error:))
         } else {
             showAlert(title: "Login Failed", message: error?.localizedDescription ?? "")
-            setLoggingIn(false)
-            clearTextFields()
         }
     }
     

@@ -94,7 +94,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             print(error ?? "")
         }
         OTMModel.isAuthenticated = false
-        performSegue(withIdentifier: loginIdentifier, sender: nil)
+        dismiss(animated: true, completion: nil)
+        //performSegue(withIdentifier: loginIdentifier, sender: nil)
     }
     
     func refreshMap() {

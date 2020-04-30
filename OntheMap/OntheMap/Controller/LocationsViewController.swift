@@ -65,6 +65,7 @@ class LocationsViewController: UITableViewController {
             print(error ?? "")
         }
         OTMModel.isAuthenticated = false
-        performSegue(withIdentifier: loginIdentifier, sender: nil)
+        dismiss(animated: true, completion: nil)
+        //performSegue(withIdentifier: loginIdentifier, sender: nil)
     }
 }

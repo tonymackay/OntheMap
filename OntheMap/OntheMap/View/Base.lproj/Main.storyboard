@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ua1-h8-ZJG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -73,12 +73,13 @@
                         <outlet property="loginButton" destination="KcP-OL-e2M" id="jpm-Ur-EGq"/>
                         <outlet property="passwordTextField" destination="gFy-8j-eOl" id="Lra-AG-7zV"/>
                         <segue destination="WG9-Pw-KNy" kind="unwind" identifier="loggedInSegue" unwindAction="cancel:" id="MpD-2S-fyz"/>
+                        <segue destination="Ua1-h8-ZJG" kind="presentation" identifier="loginSegue" modalPresentationStyle="fullScreen" id="n5r-Mb-1gb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <exit id="WG9-Pw-KNy" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="6077" y="-704"/>
+            <point key="canvasLocation" x="1674" y="110"/>
         </scene>
         <!--Locations View Controller-->
         <scene sceneID="4C5-mi-1MO">
@@ -139,7 +140,6 @@
                     <navigationItem key="navigationItem" id="r7j-CC-1Zt"/>
                     <connections>
                         <outlet property="tableView" destination="1ag-xc-xso" id="Cw5-nk-ObL"/>
-                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="loginSegue" modalPresentationStyle="fullScreen" id="FnI-0p-zV6"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hbP-Zs-BcS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -205,7 +205,6 @@
                     <connections>
                         <outlet property="mapView" destination="5uf-Vj-eX5" id="tXb-ps-iY8"/>
                         <outlet property="refreshButton" destination="tsl-ax-k2a" id="rYl-f9-ho7"/>
-                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="loginSegue" modalPresentationStyle="fullScreen" id="aD3-yq-GLK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6hp-ZM-XQN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -422,9 +421,6 @@
             <point key="canvasLocation" x="3910.144927536232" y="-213.61607142857142"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="aD3-yq-GLK"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
         <image name="list.dash" catalog="system" width="128" height="85"/>
