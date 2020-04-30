@@ -20,6 +20,7 @@
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="riH-ah-aS9" userLabel="Email Text Field">
                                         <rect key="frame" x="0.0" y="0.0" width="364" height="50"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="email"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="teO-25-oCi"/>
                                         </constraints>
@@ -28,6 +29,7 @@
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gFy-8j-eOl" userLabel="Password Text Field">
                                         <rect key="frame" x="0.0" y="60" width="364" height="50"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="password"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="uVy-eB-AuI"/>
                                         </constraints>

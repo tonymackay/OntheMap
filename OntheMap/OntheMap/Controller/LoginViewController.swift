@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: Outlets
     
@@ -25,16 +25,32 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == emailTextField {
+            textField.resignFirstResponder()
+            passwordTextField.becomeFirstResponder()
+        } else if textField == passwordTextField {
+            textField.resignFirstResponder()
+            login()
+        }
+        return true
     }
     
     // MARK: Actions
 
     @IBAction func loginTapped(_ sender: Any) {
-        setLoggingIn(true)
-        OTMClient.login(email: emailTextField.text ?? "", password: passwordTextField.text ?? "", completion: handleLoginResponse(success:error:))
+        login()
     }
     
     // MARK: Private Methods
+    func login() {
+        setLoggingIn(true)
+        OTMClient.login(email: emailTextField.text ?? "", password: passwordTextField.text ?? "", completion: handleLoginResponse(success:error:))
+    }
     
     func handleLoginResponse(success: Bool, error: Error?) {
         if success {
