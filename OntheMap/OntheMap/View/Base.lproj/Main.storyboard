@@ -306,7 +306,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="YMT-l3-3Er">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <connections>
                                     <outlet property="delegate" destination="C36-VH-stP" id="dYD-ME-OKf"/>
                                 </connections>
@@ -327,14 +327,29 @@
                                     <action selector="loginTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FVv-LD-p8c"/>
                                 </connections>
                             </button>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WAd-KF-g7u">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="Add Location" id="ZWL-Hp-TrV">
+                                        <barButtonItem key="leftBarButtonItem" title="CANCEL" id="VQg-Y4-Bz3">
+                                            <connections>
+                                                <action selector="cancelTapped:" destination="C36-VH-stP" id="w3S-85-c6r"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="vZu-3F-xRT" firstAttribute="leading" secondItem="JlQ-e5-lEk" secondAttribute="leading" constant="30" id="0E4-ge-BXf"/>
                             <constraint firstItem="JlQ-e5-lEk" firstAttribute="trailing" secondItem="vZu-3F-xRT" secondAttribute="trailing" constant="30" id="2Ic-rt-wZF"/>
                             <constraint firstItem="YMT-l3-3Er" firstAttribute="leading" secondItem="JlQ-e5-lEk" secondAttribute="leading" id="3dD-N6-BDf"/>
+                            <constraint firstItem="WAd-KF-g7u" firstAttribute="top" secondItem="JlQ-e5-lEk" secondAttribute="top" id="AZ8-5J-bU0"/>
                             <constraint firstItem="YMT-l3-3Er" firstAttribute="bottom" secondItem="JlQ-e5-lEk" secondAttribute="bottom" constant="34" id="MDX-UI-f64"/>
-                            <constraint firstItem="JlQ-e5-lEk" firstAttribute="top" secondItem="YMT-l3-3Er" secondAttribute="top" constant="44" id="W5l-pm-0bi"/>
+                            <constraint firstItem="JlQ-e5-lEk" firstAttribute="trailing" secondItem="WAd-KF-g7u" secondAttribute="trailing" id="Ucf-Pn-bFA"/>
+                            <constraint firstItem="WAd-KF-g7u" firstAttribute="bottom" secondItem="YMT-l3-3Er" secondAttribute="top" id="W5l-pm-0bi"/>
+                            <constraint firstItem="WAd-KF-g7u" firstAttribute="leading" secondItem="JlQ-e5-lEk" secondAttribute="leading" id="iPY-AK-D9R"/>
                             <constraint firstItem="JlQ-e5-lEk" firstAttribute="bottom" secondItem="vZu-3F-xRT" secondAttribute="bottom" constant="10" id="oMb-u6-t1g"/>
                             <constraint firstItem="JlQ-e5-lEk" firstAttribute="trailing" secondItem="YMT-l3-3Er" secondAttribute="trailing" id="uEm-vc-KSr"/>
                         </constraints>
@@ -343,7 +358,7 @@
                     <connections>
                         <outlet property="finishButton" destination="vZu-3F-xRT" id="bxy-8N-8Me"/>
                         <outlet property="mapView" destination="YMT-l3-3Er" id="E72-UX-gka"/>
-                        <segue destination="c36-Tz-oFk" kind="unwind" identifier="finishSegue" unwindAction="cancel:" id="2le-yW-5pn"/>
+                        <segue destination="c36-Tz-oFk" kind="unwind" identifier="finishSegue" unwindAction="cancel:" id="egY-dw-9Wa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mDr-qJ-o0c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

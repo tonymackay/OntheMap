@@ -47,6 +47,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     // MARK: Private Methods
+    
     func login() {
         setLoggingIn(true)
         OTMClient.login(email: emailTextField.text ?? "", password: passwordTextField.text ?? "", completion: handleLoginResponse(success:error:))

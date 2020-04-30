@@ -64,6 +64,10 @@ class AddLocationMapViewController: UIViewController, MKMapViewDelegate {
     
     // MARK: Actions
     
+    @IBAction func cancelTapped(_ sender: Any) {
+        performSegue(withIdentifier: segueId, sender: nil)
+    }
+    
     @IBAction func finishTapped(_ sender: Any) {
         guard let location = location else { return }
         
